@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding-top: 50px; background-color: #f4f7f6; }
+        .card { display: inline-block; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        input, button { padding: 10px; font-size: 16px; margin: 5px; }
+        .error { color: red; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<h1>Weather Forecast App</h1>
+
+<form action="/weather" method="get">
+    <input type="text" name="city" placeholder="Enter city name..." required />
+    <button type="submit">Search</button>
+</form>
+
+<br/>
+
+<div th:if="${weather}" class="card">
+    <h2 th:text="${weather.name}">City Name</h2>
+    <p>Temperature: <strong th:text="${weather.main.temp} + ' °C'">-- °C</strong></p>
+    <p>Humidity: <strong th:text="${weather.main.humidity} + '%'">--%</strong></p>
+</div>
+
+<div th:if="${error}" class="error">
+    <p th:text="${error}"></p>
+</div>
+
+</body>
+</html>
